@@ -9,6 +9,12 @@ public class FPMovement : MonoBehaviour
 {
     public float speed = 10;
     float h, v;
+    public Vector2 MovementInput => new Vector2(h, v);
+
+    public void ResetVerticalVelocity()
+    {
+        velocity = 0f;
+    }
     public float gravity = -9.8f;
     public float jumpStrength = 9.0f;
     float velocity;
@@ -57,7 +63,7 @@ public class FPMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (!IsGrounded())
+        if (!enabled || !IsGrounded())
         {
             return;
         }
